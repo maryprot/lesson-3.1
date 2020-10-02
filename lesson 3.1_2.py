@@ -2,53 +2,111 @@ from pygame.draw import *
 import pygame
 import numpy as np
 pygame.init()
-# hhhhhhhhh
+
+omega = 2.48
+
+def osc(t, omega):
+    return t*omega / 2 np.pi
 
 # Солнце
-def sun(c, r):
-    circle(screen, yellow1, c, r)
+def sun(surface, c, r):
+#     tmp_surface = pygame.Surface((50, 50), pygame.SRCALPHA, 32)
+#     tmp_surface = tmp_surface.convert_alpha()
+#     tmp_surface.set_alpha(0)
+    circle(surface, yellow1, c, r)
+#?    screen.blit(surface, (50, 50))
 
-
+   
+    
 # Первый полигон(серая часть пустыни)
 def desert_grey():
-    polygon(screen, grey1, ((x1_1, y1_1), (x2_1, y2_1), (x3_1, y3_1), (x4_1, y4_1)))
-
-
+    polygon(screen,
+            grey1,
+            ((x1_1, y1_1),
+             (x2_1, y2_1),
+             (x3_1, y3_1),
+             (x4_1, y4_1)))
+    
 # первая часть пустыни сверху(розовая)
 def desert_pink():
-    rect(screen, pink1, (left, top1, width1, height1))
-
-
+    rect(screen,
+        pink1,
+        (left, top1, width1, height1))
 # вторая часть пустыни сверху(желтая)
 def desert_yellow_2():
-    rect(screen, yellow0, (left, top2, width2, height2))
+    rect(screen,
+         yellow0,
+         (left, top2, width2, height2))
+    
 
 
 # Горы 1(верхние)
 def mountain_1():
-    polygon(screen, orange0, ((x1_2, y1_2), (x2_2, y2_2), (x3_2, y3_2), (x4_2, y4_2),
-                              (x5_2, y5_2), (x6_2, y6_2), (x7_2, y7_2), (x8_2, y8_2),
-                              (x9_2, y9_2), (x10_2, y10_2), (x11_2, y11_2), (x12_2, y12_2),
-                              (x13_2, y13_2), (x14_2, y14_2)))
+    polygon(screen,
+            orange0,
+            ((x1_2, y1_2),
+             (x2_2, y2_2),
+             (x3_2, y3_2),
+             (x4_2, y4_2),
+             (x5_2, y5_2),
+             (x6_2, y6_2),
+             (x7_2, y7_2),
+             (x8_2, y8_2),
+             (x9_2, y9_2),
+             (x10_2, y10_2),
+             (x11_2, y11_2),
+             (x12_2, y12_2),
+             (x13_2, y13_2),
+             (x14_2, y14_2)))
     circle(screen, pink1, center_1, radius_1)
-    ellipse(screen, orange0, (left_ellipse1, top_ellipse1, width_ellipse1, height_ellipse1))
+    ellipse(screen,
+            orange0,
+            (left_ellipse1, top_ellipse1, width_ellipse1, height_ellipse1))
 
 
 # Горы 2(средние)
 def mountain_2():
-    ellipse(screen, red0, (left_ellipse2, top_ellipse2, width_ellipse2, height_ellipse2))
-    polygon(screen, red0, ((x1_3, y1_3), (x2_3, y2_3), (x3_3, y3_3), (x4_3, y4_3),
-                           (x5_3, y5_3), (x6_3, y6_3), (x7_3, y7_3), (x8_3, y8_3),
-                           (x9_3, y9_3), (x10_3, y10_3), (x10_3, y10_3), (x10_3, y10_3),
-                           (x11_3, y11_3), (x12_3, y12_3), (x13_3, y13_3), (x14_3, y14_3),
-                           (x15_3, y15_3)))
+    '''
+    '''
+    ellipse(screen,
+            red0,
+            (left_ellipse2, top_ellipse2, width_ellipse2, height_ellipse2))
+    polygon(screen,
+            red0,
+            ((x1_3, y1_3),
+             (x2_3, y2_3),
+             (x3_3, y3_3),
+             (x4_3, y4_3),
+             (x5_3, y5_3),
+             (x6_3, y6_3),
+             (x7_3, y7_3),
+             (x8_3, y8_3),
+             (x9_3, y9_3),
+             (x10_3, y10_3),
+             (x10_3, y10_3),
+             (x10_3, y10_3),
+             (x11_3, y11_3),
+             (x12_3, y12_3),
+             (x13_3, y13_3),
+             (x14_3, y14_3),
+             (x15_3, y15_3)))
 
 
 def mountain_3():
-    polygon(screen, darkgrey0, ((x1_4, y1_4), (x2_4, y2_4), (x3_4, y3_4), (x4_3, y4_4),
-                                (x5_4, y5_4), (x6_4, y6_4), (x7_4, y7_4), (x8_4, y8_4),
-                                (x9_4, y9_4), (x10_4, y10_4), (x11_4, y11_4), (x12_4, y12_4)))
-
+    polygon(screen,
+            darkgrey0,
+            ((x1_4, y1_4),
+             (x2_4, y2_4),
+             (x3_4, y3_4),
+             (x4_3, y4_4),
+             (x5_4, y5_4),
+             (x6_4, y6_4),
+             (x7_4, y7_4),
+             (x8_4, y8_4),
+             (x9_4, y9_4),
+             (x10_4, y10_4),
+             (x11_4, y11_4),
+             (x12_4, y12_4)))
 
 def bird(x, y, s):
     '''
@@ -57,9 +115,19 @@ def bird(x, y, s):
     '''
     x1, y1 = x + size[0] * s // 160 - s // 2, y
     # Правое крыло
-    arc(screen, black, (x1, y1, size[0] * s // 160, size[1] * s // 120), np.pi / 2, np.pi, 1 * s // 2)
+    arc(screen,
+        black,
+        (x1, y1, size[0] * s // 160, size[1] * s // 120),
+        np.pi / 2,
+        np.pi,
+        1 * s // 2)
     # Левое крыло
-    arc(screen, black, (x, y, size[0] * s // 160, size[1] * s // 120), 0, np.pi / 2, 1 * s // 2)
+    arc(screen,
+        black,
+        (x, y, size[0] * s // 160, size[1] * s // 120),
+        0,
+        np.pi / 2,
+        1 * s // 2)
 
 
 # ввод данных
@@ -67,6 +135,7 @@ def bird(x, y, s):
 size = (800, 600)  # Размер экрана
 left = 0
 FPS = 30
+
 # Цвета
 black = (0, 0, 0)
 darkgrey0 = (47, 79, 79)
@@ -89,9 +158,11 @@ x1_1, y1_1 = 0, size[1] * 2 // 3
 x2_1, y2_1 = size[0], size[1] * 3 // 5,
 x3_1, y3_1 = size[0], size[1]
 x4_1, y4_1 = 0, size[1]
-# Солнце
-center_sun = (size[0]//2, size[1] * 1 // 5)
+
+# Солнце(Здесь можно менять положение солнца и его радиус)!
+center_sun = (size[0] // 2, size[1] * 1 // 5)
 radius_sun = size[0] // 15
+
 # Горы 1(верхние)
 center_1 = (size[0] // 50, size[1] * 2 // 5)
 radius_1 = size[0] // 30
@@ -152,12 +223,13 @@ xb_2, yb_2, sizeb_2 = size[0] // 4, size[1] // 4, 8
 xb_3, yb_3, sizeb_3 = size[0] // 3, size[1] // 4, 9
 xb_4, yb_4, sizeb_4 = size[0] // 2, size[1] // 3, 12
 xb_5, yb_5, sizeb_5 = size[0] // 2, size[1] // 2, 13
+
 # Основная программа
 screen = pygame.display.set_mode(size)
 screen.fill(yellow0)  # Небо
 desert_pink()
 desert_yellow_2()
-sun(center_sun, radius_sun)
+sun((25,25),20)#center_sun, radius_sun)
 mountain_1()
 mountain_2()
 desert_grey()
@@ -167,6 +239,8 @@ bird(xb_2, yb_2, sizeb_2)
 bird(xb_3, yb_3, sizeb_3)
 bird(xb_4, yb_4, sizeb_4)
 bird(xb_5, yb_5, sizeb_5)
+
+
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
