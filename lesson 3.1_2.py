@@ -2,7 +2,7 @@ from pygame.draw import *
 import pygame
 import numpy as np
 pygame.init()
-
+# hhhhhhhhh
 
 # Солнце
 def sun(c, r):
